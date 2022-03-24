@@ -1,6 +1,6 @@
-def secret = 'credential'
-def server = 'ubuntu'
-def directory = 'dumbfli'
+def secret = 'server'
+def server = 'ubuntu@192.168.100.71'
+def directory = 'appflix-front'
 def branch = 'master'
 
 pipeline{
