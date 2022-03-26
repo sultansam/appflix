@@ -4,5 +4,6 @@ services:
     container_name: frontend
     build: .
     image: sultansam/appflix:1.0
+    stdin_open: true
     ports:
     - 3344:3000
