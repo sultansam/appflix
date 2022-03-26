@@ -9,7 +9,7 @@ pipeline{
 	   stage ('mengkosongkan'){
 		steps{
 		   sshagent([secret]) {
-			sh """sh -o StrictHostKeyChecking=no $(server) << EOF
+			sh """ssh -o StrictHostKeyChecking=no $(server) << EOF
 			cd $(directory)
 			docker-compose down
 			docker system prune -f
