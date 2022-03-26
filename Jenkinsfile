@@ -13,7 +13,7 @@ pipeline{
 			cd ${directory}
 			docker-compose down
 			docker system prune -f
-			git pull origin $(branch)
+			git pull origin ${branch}
 			exit
 			EOF"""
 		}
