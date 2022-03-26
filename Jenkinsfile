@@ -9,8 +9,8 @@ pipeline{
 	   stage ('mengkosongkan'){
 		steps{
 		   sshagent([secret]) {
-			sh """ssh -o StrictHostKeyChecking=no (server) << EOF
-			cd $(directory)
+			   sh """ssh -o StrictHostKeyChecking=no ${server} << EOF
+			cd ${directory}
 			docker-compose down
 			docker system prune -f
 			git pull origin $(branch)
@@ -21,9 +21,9 @@ pipeline{
        }
 	stage ('membangun'){
 		steps{
-			sshagent([secret]}
-			sh """ssh -o StrictHostkeyChecking=no $(server) << EOF
-			cd &{directory}
+			sshagent([secret] {
+				sh """ssh -o StrictHostkeyChecking=no ${server} << EOF
+			cd ${directory}
 			docker-compose build
 			exit
 			EOF"""
@@ -32,9 +32,9 @@ pipeline{
 	}
 	stage ('meluncurkan'){
            steps{
-		sshagent([secret]}
-                sh """ssh -o StrictHostkeyChecking=no $(server) << EOF
-		cd &{directory}
+		   sshagent([secret] {
+			 sh """ssh -o StrictHostkeyChecking=no ${server} << EOF
+		cd ${directory}
 		docker-compose up -d
 		exit
 		EOF"""
