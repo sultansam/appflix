@@ -28,7 +28,7 @@ pipeline{
 			exit
 			EOF"""
 		 }
-	    }
+	    
 	}
 	stage ('meluncurkan'){
            steps{
