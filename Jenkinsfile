@@ -1,5 +1,5 @@
 def secret = 'ubuntu'
-def server = 'ubuntu@192.168.100.71'
+def server = 'server'
 def directory = 'appflix-front'
 def branch = 'master'
 
@@ -9,7 +9,7 @@ pipeline{
 	   stage ('mengkosongkan'){
 		steps{
 		   sshagent([secret]) {
-			sh """sh -o StrictHostKeyChecking=no $(ubuntu@192.168.100.71) << EOF
+			sh """sh -o StrictHostKeyChecking=no $(server) << EOF
 			cd $(directory)
 			docker-compose down
 			docker system prune -f
@@ -22,7 +22,7 @@ pipeline{
 	stage ('membangun'){
 		steps{
 			sshagent([secret]}
-			sh """ssh -o StrictHostkeyChecking=no $(ubuntu) << EOF
+			sh """ssh -o StrictHostkeyChecking=no $(server) << EOF
 			cd &{directory}
 			docker-compose build
 			exit
@@ -33,7 +33,7 @@ pipeline{
 	stage ('meluncurkan'){
            steps{
 		sshagent([secret]}
-                sh """ssh -o StrictHostkeyChecking=no $(ubuntu) << EOF
+                sh """ssh -o StrictHostkeyChecking=no $(server) << EOF
 		cd &{directory}
 		docker-compose up -d
 		exit
