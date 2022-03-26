@@ -20,7 +20,7 @@ pipeline{
             }
        }
 	stage ('membangun'){
-		steps{
+		steps {
 			sshagent([secret] {
 				sh """ssh -o StrictHostkeyChecking=no ${server} << EOF
 			cd ${directory}
@@ -28,7 +28,7 @@ pipeline{
 			exit
 			EOF"""
 		 }
-             }
+	    }
 	}
 	stage ('meluncurkan'){
            steps{
